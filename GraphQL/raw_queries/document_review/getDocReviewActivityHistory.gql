@@ -1,0 +1,14 @@
+query GetActivityHistoryForDocumentReview($action: String!, $payload: JSON!) {
+  genericActionCall(action: $action, payload: $payload) {
+    result
+    __typename
+  }
+}
+
+{
+"action": "Getactivityhistoryforincident",
+"payload":{
+    "processId":"{{document_review_id}}",
+    "processType":"documentReview"
+    }
+}

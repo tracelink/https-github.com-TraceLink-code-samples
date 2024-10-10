@@ -1,0 +1,16 @@
+mutation EditDocumentReview($action: String!, $payload: JSON!) {
+  genericActionCall(action: $action, payload: $payload) {
+    result
+    __typename
+  }
+}
+
+{
+"action": "Editdocumentreview",
+"payload":{
+    "id":"{{document_review_id}}",
+    "aptBusinessObjectSummary":"GraphQL test run",
+    "aptBusinessObjectDescription":"Using graphql in postman to edit document review incident",
+    "businessPriority":"LOW"
+    }
+}

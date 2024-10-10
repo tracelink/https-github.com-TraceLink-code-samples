@@ -1,0 +1,20 @@
+mutation AddChangeComments($action: String!, $payload: JSON!) {
+  genericActionCall(action: $action, payload: $payload) {
+    result
+    __typename
+  }
+}
+
+{
+"action": "Addcommentfordocumentreview",
+"payload":{
+    "processId":"{{document_review_id}}",
+    "processType":"documentReview",
+            "aptCommentBox":{
+      "aptComment":{
+        "commentText": "Adding a test comment to Document Review using Postman and GraphQL.",
+        "visibilityType": "Public"
+      }
+    }
+    }
+}
