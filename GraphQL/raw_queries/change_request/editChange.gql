@@ -1,0 +1,19 @@
+mutation Editchange($action: String!, $payload: JSON!)
+{
+    genericActionCall(action: $action, payload: $payload)
+    {
+    result
+    __typename
+    }    
+}
+
+{
+"action": "Editchange",
+"payload":{
+    "id":"{{change_id}}",
+    "aptBusinessObjectSummary":"GraphQL test run",
+    "aptBusinessObjectDescription":"Using graphql in postman to edit.",
+    "businessPriority":"LOW",
+    "responsiblePartyAtParner":{}
+    }
+}

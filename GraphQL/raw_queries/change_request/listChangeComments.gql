@@ -1,0 +1,15 @@
+query ListChangeComments($action: String!, $payload: JSON!)
+{
+    genericActionCall(action: $action, payload: $payload)
+    {
+        result
+    }                 
+}
+
+{
+"action": "Listcommentsforchange",
+"payload":{
+    "id":"{{change_id}}",
+    "processType":"change"
+    }
+}

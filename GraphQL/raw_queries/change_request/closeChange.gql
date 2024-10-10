@@ -1,0 +1,17 @@
+mutation Closechange($action: String!, $payload: JSON!) {
+  genericActionCall(action: $action, payload: $payload) {
+    result
+    __typename
+  }
+}
+
+{
+"action": "Closechange",
+"payload":{
+    "id":"{{change_id}}",
+    "aptBusinessObjectSummary":"GraphQL test run",
+    "aptBusinessObjectDescription":"Using graphql in postman to edit.",
+    "businessPriority":"LOW",
+    "responsiblePartyAtParner":{}
+    }
+}
