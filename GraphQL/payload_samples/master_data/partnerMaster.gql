@@ -1,0 +1,19 @@
+query getQueryResults(
+  $regulatoryIdentifierValue: String!
+  $regulatoryIdentifierType: String!
+) {
+  genericActionCall(
+    action: "Getpartnerbyidentifier"
+    payload: {
+      regulatoryIdentifierValue: $regulatoryIdentifierValue
+      regulatoryIdentifierType: $regulatoryIdentifierType
+    }
+  ) {
+    result
+  }
+}
+
+{
+    "regulatoryIdentifierValue": "{{partner_regulatory_identifier}}",
+    "regulatoryIdentifierType": "{{partner_regulatory_identifier_type}}"
+}

@@ -1,0 +1,22 @@
+query getProductMasterData(
+  $action: String!
+  $regulatoryItemCodeValue: String!
+  $regulatoryItemCodeType: String!
+) {
+  genericActionCall(
+    action: $action
+    payload: {
+      regulatoryItemCodeValue: $regulatoryItemCodeValue
+      regulatoryItemCodeType: $regulatoryItemCodeType
+    }
+  ) {
+    result
+    __typename
+  }
+}
+
+{
+"action": "Getproductbyitemcode", 
+"regulatoryItemCodeValue":"{{regulatory_item_code_value}}",
+"regulatoryItemCodeType": "{{regulatory_item_code_type}}"
+}
