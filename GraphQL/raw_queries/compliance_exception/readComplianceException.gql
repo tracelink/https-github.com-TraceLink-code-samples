@@ -1,0 +1,151 @@
+query readCEIncident($type: String!, $id: String!)
+{
+    genericGetObject(type:$type, id: $id)
+    {
+        ... on ALL_RETURNS {
+            ... on ComplianceException {
+                id
+                currentBaseState
+                currentSubState
+                data {
+                    aptBusinessObjectId
+                    aptBusinessObjectSummary
+                    aptBusinessObjectDescription
+                    responsibleDepartmentAtCompany
+                    responsibleDepartmentAtPartner
+                    resolutionDueDate
+                    businessPriority
+                    referenceIdentifiers {
+                        value
+                        referenceTransactionType
+                        __typename
+                    }
+                    dateSubmitted
+                    createdByPartner
+                    __typename
+                }
+                aptBusinessObjectBelongsToProcessNetwork {
+                    to {
+                        ... on ProcessNetwork {
+                            id
+                            __typename
+                        }
+                        __typename
+                    }
+                    __typename
+                }
+                aptBusinessObjectAssignedToCompanyPartnerMasterData {
+                    to {
+                        ... on PartnerLocationMasterData {
+                            id
+                            data {
+                                businessMasterDataCommon {
+                                    businessName
+                                    businessAddress {
+                                        address1
+                                        address2
+                                        city
+                                        district
+                                        village
+                                        houseNumber
+                                        township
+                                        state
+                                        postalCode
+                                        country
+                                        __typename
+                                    }
+                                    __typename
+                                }
+                                __typename
+                            }
+                            __typename
+                        }
+                        ... on PartnerMasterData {
+                            id
+                            data {
+                                businessMasterDataCommon {
+                                    businessName
+                                    businessAddress {
+                                        address1
+                                        address2
+                                        city
+                                        district
+                                        village
+                                        houseNumber
+                                        township
+                                        state
+                                        postalCode
+                                        country
+                                        __typename
+                                    }
+                                    __typename
+                                }
+                                __typename
+                            }
+                            __typename
+                        }
+                        ... on CompanyLocationMasterData {
+                            id
+                            data {
+                                businessMasterDataCommon {
+                                    businessName
+                                    businessAddress {
+                                        address1
+                                        address2
+                                        city
+                                        district
+                                        village
+                                        houseNumber
+                                        township
+                                        state
+                                        postalCode
+                                        country
+                                        __typename
+                                    }
+                                    __typename
+                                }
+                                __typename
+                            }
+                            __typename
+                            }
+                            ... on CompanyMasterData{
+                                id
+                                data {
+                                    businessMasterDataCommon {
+                                        businessName
+                                        businessAddress {
+                                            address1
+                                            address2
+                                            city
+                                            district
+                                            village
+                                            houseNumber
+                                            township
+                                            state
+                                            postalCode
+                                            country
+                                            __typename
+                                        }
+                                        __typename
+                                    }
+                                    __typename
+                                }
+                                __typename
+                            }
+                            __typename
+                        }
+                        __typename
+                }
+
+                __typename
+            }
+        __typename
+    }
+        __typename
+    }    
+}
+
+{
+    "type":"ComplianceException",
+    "id":"{{compliance_exception_incident_id}}"
+}

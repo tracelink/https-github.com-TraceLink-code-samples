@@ -1,0 +1,18 @@
+mutation EditComplianceException($action: String!, $payload: JSON!)
+{
+    genericActionCall(action: $action, payload: $payload)
+    {
+    result
+    __typename
+    }    
+}
+
+{
+"action": "Editcomplianceexception",
+"payload":{
+    "id":"{{compliance_exception_incident_id}}",
+    "aptBusinessObjectDescription":"Editing an compliance exception programmatically using graphQL via Postman",
+    "businessPriority":"LOW",
+    "responsiblePartyAtParner":{}
+    }
+}

@@ -1,0 +1,16 @@
+query ListCEIncidentComments($action: String!, $payload: JSON!)
+{
+    genericActionCall(action: $action, payload: $payload)
+    {
+    result
+    __typename
+    }    
+}
+
+{
+"action": "Listcommentsforincident",
+"payload":{
+    "id":"{{compliance_exception_incident_id}}",
+    "processType":"complianceException"
+    }
+}
