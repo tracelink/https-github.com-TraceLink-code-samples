@@ -1,0 +1,21 @@
+{
+"action": "Addexternalmanufacturingincident",
+"payload":{
+    "aptBusinessObjectSummary": "GraphQL test run 4/18/24",
+    "aptBusinessObjectDescription":"Adding an incident programmatically from postman using graphQL walkthrough demo.",
+    "externalManufacturingImpact":{
+    "businessPriority":"MEDIUM"
+    },
+    "resolutionDueDate":1736613281000 // 11 Jan 2025
+    }
+}
+
+{
+"action": "Editexternalmanufacturingincident",
+"payload":{
+    "id":"{{external_manufacturing_incident_id}}",
+    "aptBusinessObjectDescription":"Editing an external manufacturing incident programmatically using graphQL for a demo.",
+    "businessPriority":"LOW",
+    "responsiblePartyAtParner":{}
+    }
+}

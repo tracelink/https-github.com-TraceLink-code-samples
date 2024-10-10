@@ -1,0 +1,231 @@
+query readIncident($type: String!, $id: String!) {
+  genericGetObject(type: $type, id: $id) {
+    ... on ALL_RETURNS {
+      ... on ExternalManufacturingIncident {
+        id
+        currentBaseState
+        currentSubState
+        data {
+          aptBusinessObjectId
+          aptBusinessObjectSummary
+          aptBusinessObjectDescription
+          responsibleDepartmentAtCompany
+          responsibleDepartmentAtPartner
+          incidentType
+          resolutionDueDate
+          externalManufacturingImpact {
+            businessImpact
+            businessPriority
+          }
+          referenceIdentifiers {
+            value
+            referenceTransactionType
+            __typename
+          }
+          dateSubmitted
+          createdByPartner
+          __typename
+        }
+        aptBusinessObjectBelongsToProcessNetwork {
+          to {
+            ... on ProcessNetwork {
+              id
+              __typename
+            }
+            __typename
+          }
+          __typename
+        }
+        aptBusinessObjectCompanyAssignedUser {
+          to {
+            ... on User {
+              ...userName
+              __typename
+            }
+            __typename
+          }
+          __typename
+        }
+        aptBusinessObjectPartnerAssignedUser {
+          to {
+            ... on User {
+              ...userName
+              __typename
+            }
+            __typename
+          }
+          __typename
+        }
+        aptBusinessObjectCompanyOwnerUser {
+          to {
+            ... on User {
+              ...userName
+              __typename
+            }
+            __typename
+          }
+          __typename
+        }
+        aptBusinessObjectPartnerOwnerUser {
+          to {
+            ... on User {
+              ...userName
+              __typename
+            }
+            __typename
+          }
+          __typename
+        }
+        aptBusinessObjectAssignedToCompanyPartnerMasterData {
+          to {
+            ... on PartnerLocationMasterData {
+              id
+              data {
+                businessMasterDataCommon {
+                  businessName
+                  businessAddress {
+                    address1
+                    address2
+                    city
+                    district
+                    village
+                    houseNumber
+                    township
+                    state
+                    postalCode
+                    country
+                    __typename
+                  }
+                  __typename
+                }
+                __typename
+              }
+              __typename
+            }
+            ... on PartnerMasterData {
+              id
+              data {
+                businessMasterDataCommon {
+                  businessName
+                  businessAddress {
+                    address1
+                    address2
+                    city
+                    district
+                    village
+                    houseNumber
+                    township
+                    state
+                    postalCode
+                    country
+                    __typename
+                  }
+                  __typename
+                }
+                __typename
+              }
+              __typename
+            }
+            ... on CompanyLocationMasterData {
+              id
+              data {
+                businessMasterDataCommon {
+                  businessName
+                  businessAddress {
+                    address1
+                    address2
+                    city
+                    district
+                    village
+                    houseNumber
+                    township
+                    state
+                    postalCode
+                    country
+                    __typename
+                  }
+                  __typename
+                }
+                __typename
+              }
+              __typename
+            }
+            ... on CompanyMasterData {
+              id
+              data {
+                businessMasterDataCommon {
+                  businessName
+                  businessAddress {
+                    address1
+                    address2
+                    city
+                    district
+                    village
+                    houseNumber
+                    township
+                    state
+                    postalCode
+                    country
+                    __typename
+                  }
+                  __typename
+                }
+                __typename
+              }
+              __typename
+            }
+            __typename
+          }
+          __typename
+        }
+        aptBusinessObjectPrimaryPartnerLocationMasterData {
+          to {
+            ... on PartnerLocationMasterData {
+              id
+              data {
+                businessMasterDataCommon {
+                  businessName
+                  businessAddress {
+                    address1
+                    address2
+                    city
+                    district
+                    village
+                    houseNumber
+                    township
+                    state
+                    postalCode
+                    country
+                    __typename
+                  }
+                  __typename
+                }
+                __typename
+              }
+              __typename
+            }
+            __typename
+          }
+          __typename
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}
+fragment userName on User {
+  id
+  data {
+    givenName
+    surname
+    __typename
+  }
+  __typename
+}
+
+{
+    "type":"ExternalManufacturingIncident",
+    "id":"{{external_manufacturing_incident_id}}"
+}
