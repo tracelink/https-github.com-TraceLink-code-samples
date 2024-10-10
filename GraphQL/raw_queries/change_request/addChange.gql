@@ -1,0 +1,18 @@
+mutation AddChange($action: String!, $payload: JSON!)
+{
+    genericActionCall(action: $action, payload: $payload)
+    {
+    result
+    __typename
+    }
+}
+
+{
+"action": "Addchange",
+"payload":{
+    "aptBusinessObjectSummary": "GraphQL using postman demo",
+    "aptBusinessObjectDescription":"Test case entering a change request using postman and graphQL",
+    "isVisible": false,
+    "businessPriority": "MEDIUM"
+    }
+}
