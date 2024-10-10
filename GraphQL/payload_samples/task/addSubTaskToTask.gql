@@ -1,0 +1,15 @@
+mutation AddSubTaskToTask($action: String!, $payload: JSON!) {
+  genericActionCall(action: $action, payload: $payload) {
+    result
+    __typename
+  }
+}
+
+{
+"action": "Addsubtasktotask",
+"payload":{
+    "taskId":"{{task_id}}",
+    "subTaskName": "Postman created using GraphQL",
+    "subTaskType": "Postman test"
+    }
+}

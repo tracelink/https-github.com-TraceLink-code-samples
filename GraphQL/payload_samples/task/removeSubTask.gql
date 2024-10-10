@@ -1,0 +1,13 @@
+mutation RemoveSubTaskFromTask($action: String!, $payload: JSON!) {
+  genericActionCall(action: $action, payload: $payload) {
+    result
+    __typename
+  }
+}
+
+{
+"action": "Removesubtaskfromtask",
+"payload":{
+    "id":"{{subtask_id}}"
+    }
+}

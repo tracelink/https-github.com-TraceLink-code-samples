@@ -1,0 +1,14 @@
+mutation EditSubTaskOnTask($action: String!, $payload: JSON!) {
+  genericActionCall(action: $action, payload: $payload) {
+    result
+    __typename
+  }
+}
+
+{
+"action": "Editsubtaskontask",
+"payload":{
+    "id":"{{subtask_id}}",
+    "subTaskType": "Postman test modification"
+    }
+}

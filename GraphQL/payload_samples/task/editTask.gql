@@ -1,0 +1,14 @@
+mutation EditTask($action: String!, $payload: JSON!) {
+  genericActionCall(action: $action, payload: $payload) {
+    result
+    __typename
+  }
+}
+
+{
+"action": "Edittask",
+"payload":{
+    "id":"{{task_id}}",
+    "aptBusinessObjectDescription":"Modifying the description using Postman and GraphQL"
+    }
+}
