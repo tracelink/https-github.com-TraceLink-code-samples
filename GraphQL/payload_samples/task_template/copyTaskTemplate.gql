@@ -1,0 +1,16 @@
+mutation CopyTaskTemplate($action: String!, $payload: JSON!) {
+  genericActionCall(action: $action, payload: $payload) {
+    result
+    __typename
+  }
+}
+
+{
+"action": "Copytasktemplate",
+"payload":{
+    "id":"{{task_template_id}}",
+    "templateName":"New template number 2",
+    "copyGeneralInfo": true,
+    "copySubTasks": false
+    }
+}

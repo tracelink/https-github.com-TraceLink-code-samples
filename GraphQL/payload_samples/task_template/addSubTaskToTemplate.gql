@@ -1,0 +1,16 @@
+mutation AddSubTaskToTemplate($action: String!, $payload: JSON!) {
+  genericActionCall(action: $action, payload: $payload) {
+    result
+    __typename
+  }
+}
+
+{
+"action": "Addsubtasktotemplate",
+"payload":{
+    "templateId":"{{task_template_id}}",
+    "subTaskName": "GQL Created Sub Task 2",
+    "subTaskType": "Test subTask",
+    "businessPriority": "LOW"
+}
+}
