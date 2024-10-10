@@ -1,0 +1,16 @@
+mutation EditIncident($action: String!, $payload: JSON!) {
+  genericActionCall(action: $action, payload: $payload) {
+    result
+    __typename
+  }
+}
+
+{
+"action": "Editincident",
+"payload":{
+    "id":"{{incident_id}}",
+    "aptBusinessObjectDescription":"Editing an incident programmatically using graphQL via postman",
+    "businessPriority":"LOW",
+    "responsiblePartyAtParner":{}
+    }
+}
