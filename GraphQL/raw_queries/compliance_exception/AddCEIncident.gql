@@ -1,6 +1,0 @@
-mutation AddComplianceException($action: String!, $payload: JSON!) {
-  genericActionCall(action: $action, payload: $payload) {
-    result
-    __typename
-  }
-}
