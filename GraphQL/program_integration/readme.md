@@ -23,7 +23,7 @@ Variables
     }
 }
 ```  
-Once converted to JSON strings,
+Add your converted strings to a payload.  Create a single object containing query and variables objects.  
 ### Python ###  
 ```
 import requests
