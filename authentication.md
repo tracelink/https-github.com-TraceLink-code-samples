@@ -18,8 +18,8 @@ This process involves:
 3. Using the directions below for your designated browser, generate the following values:
 
 - `_store_js_production_token`, a short lived token valid for one session
-- `_store_js_production_processNetworkOwnerId`, passed in the [body header](python/FormatRequests.MD#header)
-- `_store_js_production_processNetworkId`, passed in the [body header](python/FormatRequests.MD#header)
+- `_store_js_production_processNetworkOwnerId`, passed in the [body header](python/FormatRequests.md#header)
+- `_store_js_production_processNetworkId`, passed in the [body header](python/FormatRequests.md#header)
 
 ### Chrome
 

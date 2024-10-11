@@ -24,7 +24,7 @@ Your company must have licenses for the Suppy Chain Work Management solution and
 ## Languages
 Samples focus on basic actions using the most common scripting languages. These samples are organized in folders by language. Folders are added as language samples become available.  
 
-- [Python](python/README.MD)
+- [Python](python/README.md)
 
 ## Support
 

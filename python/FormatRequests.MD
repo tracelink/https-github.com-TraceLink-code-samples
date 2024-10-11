@@ -22,7 +22,7 @@ The request body header identifies how APT processes your request.  All items be
 | Name                 | Type    | Description                                                            | Value                                      |
 | -------------------- | ------- | ---------------------------------------------------------------------- | ------------------------------------------ |
 | `headerVersion`      | integer | The version identifier for the request                                 | `1`                                        |
-| `eventName`          | string  | The fully qualified name of the request event.                         | See [event name mapping](../EventNames.MD)    |
+| `eventName`          | string  | The fully qualified name of the request event.                         | See [event name mapping](../EventNames.md)    |
 | `ownerID`            | string  | The Owner company associated with the request.                         | See [authentication](../authentication.md) |
 | `processNetworkId`   | string  | The network within the Owner company containing the process.           | See [authentication](../authentication.md) |
 | `appName`            | string  | The application that owns the event.                                   | `"agile-process-teams"`                    |
@@ -55,4 +55,4 @@ An example of a complete payload body for adding a direct supplier incident:
 
 # Next
 Review [event name mapping](eventNames.json) for each event type.  
-Follow [the quickstart](Quickstart.MD) for an example using the APT-SCWM API.
+Follow [the quickstart](Quickstart.md) for an example using the APT-SCWM API.

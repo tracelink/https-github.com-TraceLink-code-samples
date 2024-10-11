@@ -3,7 +3,7 @@ The full master data records for a company and its internal locations include th
 
 Query master data using the same methods as the incident requests.  
 
-Refer to the [Quickstart](Quickstart.MD) walkthrough to prepare your scripting environment and variables.  
+Refer to the [Quickstart](Quickstart.md) walkthrough to prepare your scripting environment and variables.  
 
 ## Partner Master Data  
 **Type or copy the following into your Python terminal, replacing necessary values**  
