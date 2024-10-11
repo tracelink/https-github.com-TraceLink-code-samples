@@ -95,4 +95,4 @@ In this example, Opus automatically assigns Business Object and Id values.  The 
   }
 }
 ```  
-The ```id``` item allows subsequent calls to update, copy, close, and reopen this new record.  
+The ```id``` item allows subsequent calls to update, comment, copy, close, or reopen this new record.  
