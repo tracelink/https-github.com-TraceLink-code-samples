@@ -1,5 +1,8 @@
 # Incorporating GraphQL into your automation solutions #  
-The GraphQL code samples provided contain the payloads necessary to make requests to the Opus platform.  Incorporate the payload into the body of your request.  The request text must be converted to a JSON string when copied from the sample files.  For example:  
+The GraphQL code samples provided contain the payloads necessary to make requests to the Opus platform.  
+Use your preferred programming language to construct the HTTP request for the desired action.  Your ```Headers``` section contains the relevant authorization data for your environment.  
+Incorporate the payload into the body of your request.  The request text must be converted to a JSON string for inclusion.  
+For example:  
 ### Original Query ###  
 Query:  
 ```
@@ -43,7 +46,6 @@ headers = {
 response = requests.request("POST", url, headers=headers, data=payload)
 
 print(response.text)
-
 ```
 ### Node.js ###  
 ```
