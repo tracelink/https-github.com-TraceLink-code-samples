@@ -1,6 +1,6 @@
 {
   "val_server": "https://valvir-opus.tracelink.com",
-  "response_body": "[object Object]",
+  "response_body": "",
   "prod_server": "https://prod-opus.tracelink.com",
   "token": "",
   "apiKey": "",
@@ -46,7 +46,7 @@
   "regulatory_company_identifier": "",
   "regulatory_company_type": "GLN",
   "regulatory_item_code_value": "",
-  "regulatory_item_code_type": "",
+  "regulatory_item_code_type": "US_NDC532",
   "partner_regulatory_identifier": "",
   "partner_regulatory_identifier_type": "GCP",
   "subtask_template_id": "",
