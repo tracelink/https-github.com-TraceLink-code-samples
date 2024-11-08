@@ -20,7 +20,7 @@ Your company must have licenses for the Suppy Chain Work Management solution and
 ## Languages ##  
 Opus is capable of communicating in a language-agnostic manner.  Users can use any programming or scripting language capable of sending and receiving HTTPS requests.  Opus accepts AsyncAPI or GraphQL formats.  
 
-[Use GraphQL in your automation solutions](graphl/GraphQL_Requests.md)  
+[Use GraphQL in your automation solutions](graphql/GraphQL_Requests.md)  
 [Create requests using AsyncAPI](asyncapi/AsyncAPI_Requests.md)  
 
 ## Support ##  
