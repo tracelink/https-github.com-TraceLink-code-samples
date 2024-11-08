@@ -1,7 +1,8 @@
 # GraphQL Code Samples #  
 ## Payload Samples ##  
-The payload samples contain the GraphQL text to be used in either a query tool or incorporated into software code.  
-## Program Samples ##  
-The program samples contain the minimum necessary code to send the request.  This code is extensible to construct larger solutions.  
+Contains the GraphQL code to be used in either a query tool or incorporated into program code.  
+## Program Integration ##  
+Contains a discussion and the minimum necessary code to construct a request.  This code is extensible to construct larger solutions.  
 
-[Learn to use graphql in your solutions](program_integration/readme.md)  
+[Use GraphQL in your solutions](program_integration/GraphQL_Requests.md)  
+[Create requests using AsyncAPI](program_integration/AsyncAPI_Requests.md)  

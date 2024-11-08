@@ -18,9 +18,10 @@ Additional functionality will be added to this repository as it becomes availabl
 Your company must have licenses for the Suppy Chain Work Management solution and APT app.  
 
 ## Languages ##  
-Samples focus on basic actions using the most common scripting languages. These samples are organized in folders by language. Folders are added as language samples become available.  
+Opus is capable of communicating in a language-agnostic manner.  Users can use any programming or scripting language capable of sending and receiving HTTPS requests.  Opus accepts AsyncAPI or GraphQL formats.  
 
-- [Python](python/README.md)
+[Use GraphQL in your automation solutions](GraphQL/program_integration/readme.md)  
+[Create requests using AsyncAPI]()  
 
 ## Support ##  
 
