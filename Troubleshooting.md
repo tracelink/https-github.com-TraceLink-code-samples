@@ -1,4 +1,4 @@
-# Troubleshooting Errors
+# Troubleshooting Errors #  
 
 The APT-SCWM API responds to each request with a status code and text describing the result of the request.  
 
@@ -51,4 +51,4 @@ Response message {
   "payload" : null
 }
 ```
-The **errMsg** reveals the validation of the payload object failed.  In this case, the application determined the payload is missing `aptBusinessObjectSummary`, but it is required. 
+The **errMsg** reveals the validation of the payload object failed.  In this case, the application determined the payload is missing `aptBusinessObjectSummary`, but it is required.
