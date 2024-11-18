@@ -1,0 +1,57 @@
+query readDocumentReview($id: String!, $type: String!) {
+  genericGetObject(type: $type, id: $id) {
+    ... on ALL_RETURNS {
+      ... on DocumentReview {
+        id
+        currentBaseState
+        currentSubState
+        data {
+          aptBusinessObjectId
+          aptBusinessObjectSummary
+          aptBusinessObjectDescription
+          responsibleDepartmentAtCompany
+          responsibleDepartmentAtPartner
+          businessPriority
+          createdByPartner
+          productId
+          aptBusinessObjectImpactsLocationMasterData {
+            locationType
+            locationContact
+            partnerLocationId
+          }
+          __typename
+        }
+        aptBusinessObjectContainsComment {
+          to {
+            ... on AptComment {
+              id
+              data {
+                commentText
+                visibilityType
+              }
+            }
+          }
+        }
+        aptBusinessObjectContainsAttachment {
+          to {
+            ... on AptAttachment {
+              data {
+                fileName
+                fileSize
+                visibilityType
+                fileS3Location
+              }
+            }
+          }
+        }
+        __typename
+      }
+      __typename
+    }
+  }
+}
+
+{
+    "type":"DocumentReview",
+    "id":"{{document_review_id}}"
+}

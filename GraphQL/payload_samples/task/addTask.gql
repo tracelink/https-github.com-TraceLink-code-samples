@@ -1,0 +1,20 @@
+mutation AddTask($action: String!, $payload: JSON!) {
+  genericActionCall(action: $action, payload: $payload) {
+    result
+    __typename
+  }
+}
+
+{
+"action": "Addtask",
+"payload":{
+    "templateId": "{{task_template_id}}",
+        "aptBusinessObjectSummary": "GraphQL test run",
+        "aptBusinessObjectDescription": "Tasks for recurring purchase orders",
+        "businessPriority": "LOW",
+        "completionDueDate": "1737834411000", 
+        "isVisible": true,
+        "isAtRisk": false
+        
+    }
+}

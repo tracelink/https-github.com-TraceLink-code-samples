@@ -1,0 +1,32 @@
+query ReadTemplateDetails($id: String!, $type: String!) {
+  genericGetObject(type: $type, id: $id) {
+    ... on ALL_RETURNS {
+      ... on TaskTemplate {
+        id
+        data {
+          templateName
+          aptBusinessObjectDescription
+          isTemplateModifiableByMember
+          isAddRemoveSubtaskAllowed
+          completionRequiredWithinDays
+          businessPriority
+          responsibleDepartmentAtCompany
+        }
+        taskTemplateContainsSubTask {
+          to {
+            subType
+            objectType
+          }
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}
+
+{
+    "type":"TaskTemplate",
+    "id":"{{task_template_id}}"
+}

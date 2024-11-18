@@ -1,0 +1,18 @@
+mutation AddComplianceException($action: String!, $payload: JSON!)
+{
+    genericActionCall(action: $action, payload: $payload)
+    {
+    result
+    __typename
+    }    
+}
+
+{
+"action": "Addcomplianceexception",
+"payload":{
+    "aptBusinessObjectSummary": "GraphQL test run",
+    "aptBusinessObjectDescription":"Adding a compliance exception incident programmatically from postman using graphQL walkthrough demo.",
+    "businessPriority":"MEDIUM",
+    "resolutionDueDate":"1736613281000" // 11 Jan 2025
+    }
+}

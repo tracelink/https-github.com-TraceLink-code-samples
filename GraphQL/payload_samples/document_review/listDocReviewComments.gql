@@ -1,0 +1,14 @@
+query ListDocumentReviewComments($action: String!, $payload: JSON!) {
+  genericActionCall(action: $action, payload: $payload) {
+    result
+    __typename
+  }
+}
+
+{
+"action": "Listcommentsfordocumentreview",
+"payload":{
+    "id":"{{document_review_id}}",
+    "processType":"documentReview"
+    }
+}

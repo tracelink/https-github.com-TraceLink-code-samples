@@ -1,0 +1,13 @@
+query ListSubTaskForTemplate($action: String!, $payload: JSON!) {
+  genericActionCall(action: $action, payload: $payload) {
+    result
+    __typename
+  }
+}
+
+{
+"action": "Listsubtaskfortemplate",
+"payload":{
+    "templateId":"{{task_template_id}}"
+    }
+}

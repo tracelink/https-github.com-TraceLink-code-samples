@@ -1,0 +1,81 @@
+query readChange($type: String!, $id: String!)
+{
+    genericGetObject(type:$type, id: $id)
+    {
+        ... on ALL_RETURNS{
+            ... on Change {
+                id
+                currentBaseState
+                currentSubState
+                data {
+                    aptBusinessObjectId
+                    aptBusinessObjectSummary
+                    aptBusinessObjectDescription
+                    responsibleDepartmentAtCompany
+                    responsibleDepartmentAtPartner
+                    businessPriority
+                    changeType
+                    implementationDueDate
+                    implementationTeam
+                    subjectMatterExperts{
+                        subjectMatterExpertName
+                        subjectMatterExpertEmail
+                    }
+                    changeImpact{
+                        changeReferenceIdentifiers{
+                            referenceTransactionType
+                            value
+                        }
+                        riskType
+                        implementationNeededByDate
+                        businessScopeImpact
+                        otherBusinessScopeImpact
+                        reasonForChange
+                        reasonForChangeNotes
+                        potentialRisks
+                        evaluationsOfChange
+                    }
+                    createdByPartner
+                    productId
+                    aptBusinessObjectImpactsLocationMasterData{
+                        locationType
+                        locationContact
+                        partnerLocationId
+                    }
+                    __typename
+                }
+                aptBusinessObjectContainsComment{
+                    to {
+                        ... on AptComment{
+                            id
+                            data{
+                                commentText
+                                visibilityType
+                            }
+                        }
+                    }
+                }
+                aptBusinessObjectContainsAttachment{
+                    to {
+                        ... on AptAttachment{
+                            data{
+                                fileName
+                                fileSize
+                                visibilityType
+                                fileS3Location
+                            }
+                        }
+                    }
+                }
+                __typename
+            }
+            __typename
+        }
+        __typename
+    }
+}
+
+{
+    "type": "Change",
+    "id":"{{change_id}}"
+}

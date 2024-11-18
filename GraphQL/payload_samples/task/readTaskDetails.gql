@@ -1,0 +1,30 @@
+query ReadTaskDetails($id: String!, $type: String!) {
+  genericGetObject(type: $type, id: $id) {
+    ... on ALL_RETURNS {
+      ... on Task {
+        id
+        data {
+          templateName
+          aptBusinessObjectDescription
+          isAddRemoveSubtaskAllowed
+          businessPriority
+          responsibleDepartmentAtCompany
+        }
+        taskContainsSubTask {
+          to {
+            subType
+            objectType
+          }
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}
+
+{
+    "type":"Task",
+    "id":"{{task_id}}"
+}

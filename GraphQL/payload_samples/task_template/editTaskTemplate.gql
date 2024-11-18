@@ -1,0 +1,14 @@
+mutation EditTaskTemplate($action: String!, $payload: JSON!) {
+  genericActionCall(action: $action, payload: $payload) {
+    result
+    __typename
+  }
+}
+
+{
+"action": "Edittasktemplate",
+"payload":{
+    "id":"{{task_template_id}}",
+    "aptBusinessObjectDescription":"Modified template via Postman using GraphQL"
+    }
+}

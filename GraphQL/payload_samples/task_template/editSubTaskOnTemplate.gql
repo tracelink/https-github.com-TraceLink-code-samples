@@ -1,0 +1,15 @@
+mutation EditSubTaskOnTemplate($action: String!, $payload: JSON!) {
+  genericActionCall(action: $action, payload: $payload) {
+    result
+    __typename
+  }
+}
+
+{
+"action": "Editsubtaskontemplate",
+"payload":{
+    "id":"{{subtask_template_id}}",
+    "subTaskName":"Modified template name 1",
+    "businessPriority":"LOW"
+    }
+}

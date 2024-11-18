@@ -1,0 +1,13 @@
+mutation Copytask($action: String!, $payload: JSON!) {
+  genericActionCall(action: $action, payload: $payload) {
+    result
+    __typename
+  }
+}
+
+{
+"action": "Copytask",
+"payload":{
+    "id":"{{task_id}}"
+    }
+}

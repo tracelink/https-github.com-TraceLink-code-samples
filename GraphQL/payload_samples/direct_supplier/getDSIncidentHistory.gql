@@ -1,0 +1,16 @@
+query GetActivityHistoryForDSIncident($action: String!, $payload: JSON!)
+{
+    genericActionCall(action: $action, payload: $payload)
+    {
+    result
+    __typename
+    }    
+}
+
+{
+"action": "Getactivityhistoryforincident",
+"payload":{
+    "processId":"{{direct_supplier_incident_id}}",
+    "processType":"directSupplierIncident"
+    }
+}

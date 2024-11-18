@@ -1,0 +1,4548 @@
+{
+	"info": {
+		"_postman_id": "282210fa-8de8-48fe-b965-aa6071a1c507",
+		"name": "GraphQL Requests",
+		"description": "Communicate with Supply Chain Work Management applications using a set of parameterized requests designed to help you create, edit, view, and submit different types of incidents and business requests.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37528820",
+		"_collection_link": "https://tracelink-1.postman.co/workspace/Opus-automation~06848056-7fc9-4be9-8fb4-18f7c8831284/collection/37528820-282210fa-8de8-48fe-b965-aa6071a1c507?action=share&source=collection_link&creator=37528820"
+	},
+	"item": [
+		{
+			"name": "incident",
+			"item": [
+				{
+					"name": "AddIncident",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var mResult = JSON.parse(jsonData.data.genericActionCall.result);",
+									"pm.environment.set(\"incident_id\", mResult.id);",
+									"pm.environment.set(\"apt_incident_id\", mResult.aptBusinessObjectId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation AddIncident($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Addincident\",\n\"payload\":{\n    \"aptBusinessObjectSummary\": \"GraphQL flow test run\",\n    \"aptBusinessObjectDescription\":\"Adding an incident programmatically from postman using graphQL\",\n    \"businessPriority\":\"MEDIUM\",\n    \"incidentType\":\"LABEL_COMPLIANCE_ERROR\",\n    \"resolutionDueDate\":\"1736613281000\", // 11 Jan 2025\n    \"responsiblePartyAtParner\":{}\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditIncident",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation EditIncident($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Editincident\",\n\"payload\":{\n    \"id\":\"{{incident_id}}\",\n    \"aptBusinessObjectDescription\":\"Editing an incident programmatically using graphQL via postman\",\n    \"businessPriority\":\"LOW\",\n    \"responsiblePartyAtParner\":{}\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ReadIncident",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query readIncident($type: String!, $id: String!)\n{\n    genericGetObject(type:$type, id: $id)\n    {\n        ... on ALL_RETURNS {\n            ... on Incident {\n                id\n                currentBaseState\n                currentSubState\n                data {\n                    aptBusinessObjectId\n                    aptBusinessObjectSummary\n                    aptBusinessObjectDescription\n                    responsibleDepartmentAtCompany\n                    responsibleDepartmentAtPartner\n                    incidentType\n                    businessPriority\n                    resolutionDueDate\n                    incidentConclusion {\n                        dateClosed\n                        finalRootCause\n                        resolutionType\n                        isReoccuring\n                        closingStatement\n                        __typename\n                    }\n                    referenceIdentifiers {\n                        value\n                        referenceTransactionType\n                        __typename\n                    }\n                    dateSubmitted\n                    createdByPartner\n                    __typename\n                }\n                aptBusinessObjectContainsComment{\n                    to {\n                        ... on AptComment{\n                            id\n                            data{\n                                commentText\n                                visibilityType\n                            }\n                        }\n                    }\n                }\n                issueRelatedToImpactedProductDetail {\n                    to {\n                        ... on ProductMasterData {\n                            id\n                            data {\n                                productItemInformation {\n                                    productName\n                                    packSize\n                                    strength\n                                    dosageForm\n                                    productLanguageCode\n                                    isLightSensitive\n                                    __typename\n                                }\n                                packagingInformation {\n                                    packagingCode {\n                                        packagingCodeType\n                                        packagingCodeValue\n                                        __typename\n                                    }\n                                    __typename\n                                }\n                                regulatoryItemCodes {\n                                    regulatoryItemCode{\n                                        regulatoryItemCodeType\n                                        regulatoryItemCodeValue\n                                        __typename\n                                    }\n                                    __typename\n                                }\n                                packagingInformationAndRegulatoryItemCodesDerivedField\n                                __typename\n                            }\n                            __typename\n                        }\n                        __typename\n                    }\n                    impactedLots\n                    __typename\n                }\n                aptBusinessObjectBelongsToProcessNetwork {\n                    to {\n                        ... on ProcessNetwork {\n                            id\n                            __typename\n                        }\n                        __typename\n                    }\n                    __typename\n                }\n                aptBusinessObjectCompanyAssignedUser {\n                    to {\n                        ... on User {\n                            ...userName\n                            __typename\n                        }\n                        __typename\n                    }\n                    __typename\n                }\n                aptBusinessObjectPartnerAssignedUser {\n                    to {\n                        ... on User {\n                            ...userName\n                            __typename\n                        }\n                        __typename\n                    }\n                    __typename\n                }\n                aptBusinessObjectCompanyOwnerUser {\n                    to {\n                        ... on User {\n                            ...userName\n                            __typename\n                        }\n                        __typename\n                    }\n                    __typename\n                }\n                aptBusinessObjectPartnerOwnerUser {\n                    to {\n                        ... on User {\n                            ...userName\n                            __typename\n                        }\n                        __typename\n                    }\n                    __typename\n                }\n                aptBusinessObjectAssignedToCompanyPartnerMasterData {\n                    to {\n                        ... on PartnerLocationMasterData {\n                            id\n                            data {\n                                businessMasterDataCommon {\n                                    businessName\n                                    businessAddress {\n                                        address1\n                                        address2\n                                        city\n                                        district\n                                        village\n                                        houseNumber\n                                        township\n                                        state\n                                        postalCode\n                                        country\n                                        __typename\n                                    }\n                                    __typename\n                                }\n                                __typename\n                            }\n                            __typename\n                        }\n                        ... on PartnerMasterData {\n                            id\n                            data {\n                                businessMasterDataCommon {\n                                    businessName\n                                    businessAddress {\n                                        address1\n                                        address2\n                                        city\n                                        district\n                                        village\n                                        houseNumber\n                                        township\n                                        state\n                                        postalCode\n                                        country\n                                        __typename\n                                    }\n                                    __typename\n                                }\n                                __typename\n                            }\n                            __typename\n                        }\n                        ... on CompanyLocationMasterData {\n                            id\n                            data {\n                                businessMasterDataCommon {\n                                    businessName\n                                    businessAddress {\n                                        address1\n                                        address2\n                                        city\n                                        district\n                                        village\n                                        houseNumber\n                                        township\n                                        state\n                                        postalCode\n                                        country\n                                        __typename\n                                    }\n                                    __typename\n                                }\n                                __typename\n                            }\n                            __typename\n                            }\n                            ... on CompanyMasterData{\n                                id\n                                data {\n                                    businessMasterDataCommon {\n                                        businessName\n                                        businessAddress {\n                                            address1\n                                            address2\n                                            city\n                                            district\n                                            village\n                                            houseNumber\n                                            township\n                                            state\n                                            postalCode\n                                            country\n                                            __typename\n                                        }\n                                        __typename\n                                    }\n                                    __typename\n                                }\n                                __typename\n                            }\n                            __typename\n                        }\n                        __typename\n                    }\n                aptBusinessObjectPrimaryPartnerLocationMasterData {\n                    to {\n                        ... on PartnerLocationMasterData {\n                            id\n                            data {\n                                businessMasterDataCommon {\n                                    businessName\n                                    businessAddress {\n                                        address1\n                                        address2\n                                        city\n                                        district\n                                        village\n                                        houseNumber\n                                        township\n                                        state\n                                        postalCode\n                                        country\n                                        __typename\n                                    }\n                                    __typename\n                                }\n                                __typename\n                            }\n                            __typename\n                        }\n                        __typename\n                    }\n                    __typename\n                }\n                __typename\n            }\n        __typename\n    }\n        __typename\n    }    \n}\nfragment userName on User {\n    id\n    data {\n        givenName\n        surname\n        __typename\n    }\n    __typename\n} ",
+								"variables": "{\n    \"type\":\"Incident\",\n    \"id\":\"{{incident_id}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddIncidentComment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var mResult = JSON.parse(jsonData.data.genericActionCall.result);",
+									"pm.environment.set(\"incident_comment_id\", mResult.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation AddIncidentComments($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Addcommentforincident\",\n\"payload\":{\n    \"processId\":\"{{incident_id}}\",\n    \"processType\":\"incident\",\n        \"aptCommentBox\":{\n      \"aptComment\":{\n        \"commentText\": \"Adding a test comment using Postman and GraphQL.\",\n        \"visibilityType\": \"Public\"\n      }\n    }\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListIncidentComments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query ListIncidentComments($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Listcommentsforincident\",\n\"payload\":{\n    \"id\":\"{{incident_id}}\",\n    \"processType\":\"incident\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetActivityHistoryForIncident",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetActivityHistoryForIncident($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Getactivityhistoryforincident\",\n\"payload\":{\n    \"processId\":\"{{incident_id}}\",\n    \"processType\":\"incident\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Direct Supplier Incident",
+			"item": [
+				{
+					"name": "AddDsIncident",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var mResult = JSON.parse(jsonData.data.genericActionCall.result);",
+									"pm.environment.set(\"direct_supplier_incident_id\", mResult.id);",
+									"pm.environment.set(\"apt_direct_supplier_incident_id\", mResult.aptBusinessObjectId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation AddDSIncident($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Adddirectsupplierincident\",\n\"payload\":{\n    \"aptBusinessObjectSummary\": \"GraphQL Postman DS Incident test run\",\n    \"aptBusinessObjectDescription\":\"Adding an incident programmatically using graphQL via Postman\",\n    \"directSupplierImpact\":{\n    \"businessPriority\":\"MEDIUM\"\n    },\n    \"resolutionDueDate\":1736613281000 // 11 Jan 2025\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditDsIncident",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation EditDSIncident($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Editdirectsupplierincident\",\n\"payload\":{\n    \"id\":\"{{direct_supplier_incident_id}}\",\n    \"aptBusinessObjectDescription\":\"Editing an incident programmatically using graphQL via Postman\",\n    \"businessPriority\":\"LOW\",\n    \"responsiblePartyAtParner\":{}\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ReadDsIncident",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query readDSIncident($type: String!, $id: String!)\n{\n    genericGetObject(type:$type, id: $id)\n    {\n        ... on ALL_RETURNS {\n            ... on DirectSupplierIncident {\n                id\n                currentBaseState\n                currentSubState\n                data {\n                    aptBusinessObjectId\n                    aptBusinessObjectSummary\n                    aptBusinessObjectDescription\n                    responsibleDepartmentAtCompany\n                    responsibleDepartmentAtPartner\n                    incidentType\n                    resolutionDueDate\n                    directSupplierImpact{\n                        businessPriority\n                    }\n                    referenceIdentifiers {\n                        value\n                        referenceTransactionType\n                        __typename\n                    }\n                    dateSubmitted\n                    createdByPartner\n                    __typename\n                }\n                aptBusinessObjectBelongsToProcessNetwork {\n                    to {\n                        ... on ProcessNetwork {\n                            id\n                            __typename\n                        }\n                        __typename\n                    }\n                    __typename\n                }\n                aptBusinessObjectCompanyAssignedUser {\n                    to {\n                        ... on User {\n                            ...userName\n                            __typename\n                        }\n                        __typename\n                    }\n                    __typename\n                }\n                aptBusinessObjectPartnerAssignedUser {\n                    to {\n                        ... on User {\n                            ...userName\n                            __typename\n                        }\n                        __typename\n                    }\n                    __typename\n                }\n                aptBusinessObjectCompanyOwnerUser {\n                    to {\n                        ... on User {\n                            ...userName\n                            __typename\n                        }\n                        __typename\n                    }\n                    __typename\n                }\n                aptBusinessObjectPartnerOwnerUser {\n                    to {\n                        ... on User {\n                            ...userName\n                            __typename\n                        }\n                        __typename\n                    }\n                    __typename\n                }\n                aptBusinessObjectAssignedToCompanyPartnerMasterData {\n                    to {\n                        ... on PartnerLocationMasterData {\n                            id\n                            data {\n                                businessMasterDataCommon {\n                                    businessName\n                                    businessAddress {\n                                        address1\n                                        address2\n                                        city\n                                        district\n                                        village\n                                        houseNumber\n                                        township\n                                        state\n                                        postalCode\n                                        country\n                                        __typename\n                                    }\n                                    __typename\n                                }\n                                __typename\n                            }\n                            __typename\n                        }\n                        ... on PartnerMasterData {\n                            id\n                            data {\n                                businessMasterDataCommon {\n                                    businessName\n                                    businessAddress {\n                                        address1\n                                        address2\n                                        city\n                                        district\n                                        village\n                                        houseNumber\n                                        township\n                                        state\n                                        postalCode\n                                        country\n                                        __typename\n                                    }\n                                    __typename\n                                }\n                                __typename\n                            }\n                            __typename\n                        }\n                        ... on CompanyLocationMasterData {\n                            id\n                            data {\n                                businessMasterDataCommon {\n                                    businessName\n                                    businessAddress {\n                                        address1\n                                        address2\n                                        city\n                                        district\n                                        village\n                                        houseNumber\n                                        township\n                                        state\n                                        postalCode\n                                        country\n                                        __typename\n                                    }\n                                    __typename\n                                }\n                                __typename\n                            }\n                            __typename\n                            }\n                            ... on CompanyMasterData{\n                                id\n                                data {\n                                    businessMasterDataCommon {\n                                        businessName\n                                        businessAddress {\n                                            address1\n                                            address2\n                                            city\n                                            district\n                                            village\n                                            houseNumber\n                                            township\n                                            state\n                                            postalCode\n                                            country\n                                            __typename\n                                        }\n                                        __typename\n                                    }\n                                    __typename\n                                }\n                                __typename\n                            }\n                            __typename\n                        }\n                        __typename\n                    }\n                aptBusinessObjectPrimaryPartnerLocationMasterData {\n                    to {\n                        ... on PartnerLocationMasterData {\n                            id\n                            data {\n                                businessMasterDataCommon {\n                                    businessName\n                                    businessAddress {\n                                        address1\n                                        address2\n                                        city\n                                        district\n                                        village\n                                        houseNumber\n                                        township\n                                        state\n                                        postalCode\n                                        country\n                                        __typename\n                                    }\n                                    __typename\n                                }\n                                __typename\n                            }\n                            __typename\n                        }\n                        __typename\n                    }\n                    __typename\n                }\n                __typename\n            }\n        __typename\n    }\n        __typename\n    }    \n}\nfragment userName on User {\n    id\n    data {\n        givenName\n        surname\n        __typename\n    }\n    __typename\n} ",
+								"variables": "{\n    \"type\":\"DirectSupplierIncident\",\n    \"id\":\"{{direct_supplier_incident_id}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddDsIncidentComment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var mResult = JSON.parse(jsonData.data.genericActionCall.result);",
+									"pm.environment.set(\"direct_supplier_incident_comment_id\", mResult.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation AddDSIncidentComments($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Addcommentforincident\",\n\"payload\":{\n    \"processId\":\"{{direct_supplier_incident_id}}\",\n    \"processType\":\"directSupplierIncident\",\n        \"aptCommentBox\":{\n      \"aptComment\":{\n        \"commentText\": \"Adding a test comment using Postman and GraphQL.\",\n        \"visibilityType\": \"Public\"\n      }\n    }\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListDsIncidentComments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query ListDSIncidentComments($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Listcommentsforincident\",\n\"payload\":{\n    \"id\":\"{{direct_supplier_incident_id}}\",\n    \"processType\":\"directSupplierIncident\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetActivityHistoryForDsIncident",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetActivityHistoryForDSIncident($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Getactivityhistoryforincident\",\n\"payload\":{\n    \"processId\":\"{{direct_supplier_incident_id}}\",\n    \"processType\":\"directSupplierIncident\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "External Manufacturing Incident",
+			"item": [
+				{
+					"name": "AddXMfgIncident",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var mResult = JSON.parse(jsonData.data.genericActionCall.result);",
+									"pm.environment.set(\"external_manufacturing_incident_id\", mResult.id);",
+									"pm.environment.set(\"apt_external_manufacturing_incident_id\", mResult.aptBusinessObjectId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation AddXMFGIncident($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Addexternalmanufacturingincident\",\n\"payload\":{\n    \"aptBusinessObjectSummary\": \"GraphQL Postman test run\",\n    \"aptBusinessObjectDescription\":\"Adding an incident programmatically from postman using graphQL\",\n    \"externalManufacturingImpact\":{\n    \"businessPriority\":\"MEDIUM\"\n    },\n    \"resolutionDueDate\":1736613281000 // 11 Jan 2025\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditXMfgIncident",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation EditXMFGIncident($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Editexternalmanufacturingincident\",\n\"payload\":{\n    \"id\":\"{{external_manufacturing_incident_id}}\",\n    \"aptBusinessObjectDescription\":\"Editing an external manufacturing incident programmatically using graphQL via postman\",\n    \"businessPriority\":\"LOW\",\n    \"responsiblePartyAtParner\":{}\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ReadXMfgIncident",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query readXMFGIncident($type: String!, $id: String!)\n{\n    genericGetObject(type:$type, id: $id)\n    {\n        ... on ALL_RETURNS {\n            ... on ExternalManufacturingIncident {\n                id\n                currentBaseState\n                currentSubState\n                data {\n                    aptBusinessObjectId\n                    aptBusinessObjectSummary\n                    aptBusinessObjectDescription\n                    responsibleDepartmentAtCompany\n                    responsibleDepartmentAtPartner\n                    incidentType\n                    resolutionDueDate\n                    externalManufacturingImpact{\n                        businessImpact\n                        businessPriority\n                    }\n                    referenceIdentifiers {\n                        value\n                        referenceTransactionType\n                        __typename\n                    }\n                    dateSubmitted\n                    createdByPartner\n                    __typename\n                }\n                aptBusinessObjectBelongsToProcessNetwork {\n                    to {\n                        ... on ProcessNetwork {\n                            id\n                            __typename\n                        }\n                        __typename\n                    }\n                    __typename\n                }\n                aptBusinessObjectCompanyAssignedUser {\n                    to {\n                        ... on User {\n                            ...userName\n                            __typename\n                        }\n                        __typename\n                    }\n                    __typename\n                }\n                aptBusinessObjectPartnerAssignedUser {\n                    to {\n                        ... on User {\n                            ...userName\n                            __typename\n                        }\n                        __typename\n                    }\n                    __typename\n                }\n                aptBusinessObjectCompanyOwnerUser {\n                    to {\n                        ... on User {\n                            ...userName\n                            __typename\n                        }\n                        __typename\n                    }\n                    __typename\n                }\n                aptBusinessObjectPartnerOwnerUser {\n                    to {\n                        ... on User {\n                            ...userName\n                            __typename\n                        }\n                        __typename\n                    }\n                    __typename\n                }\n                aptBusinessObjectAssignedToCompanyPartnerMasterData {\n                    to {\n                        ... on PartnerLocationMasterData {\n                            id\n                            data {\n                                businessMasterDataCommon {\n                                    businessName\n                                    businessAddress {\n                                        address1\n                                        address2\n                                        city\n                                        district\n                                        village\n                                        houseNumber\n                                        township\n                                        state\n                                        postalCode\n                                        country\n                                        __typename\n                                    }\n                                    __typename\n                                }\n                                __typename\n                            }\n                            __typename\n                        }\n                        ... on PartnerMasterData {\n                            id\n                            data {\n                                businessMasterDataCommon {\n                                    businessName\n                                    businessAddress {\n                                        address1\n                                        address2\n                                        city\n                                        district\n                                        village\n                                        houseNumber\n                                        township\n                                        state\n                                        postalCode\n                                        country\n                                        __typename\n                                    }\n                                    __typename\n                                }\n                                __typename\n                            }\n                            __typename\n                        }\n                        ... on CompanyLocationMasterData {\n                            id\n                            data {\n                                businessMasterDataCommon {\n                                    businessName\n                                    businessAddress {\n                                        address1\n                                        address2\n                                        city\n                                        district\n                                        village\n                                        houseNumber\n                                        township\n                                        state\n                                        postalCode\n                                        country\n                                        __typename\n                                    }\n                                    __typename\n                                }\n                                __typename\n                            }\n                            __typename\n                            }\n                            ... on CompanyMasterData{\n                                id\n                                data {\n                                    businessMasterDataCommon {\n                                        businessName\n                                        businessAddress {\n                                            address1\n                                            address2\n                                            city\n                                            district\n                                            village\n                                            houseNumber\n                                            township\n                                            state\n                                            postalCode\n                                            country\n                                            __typename\n                                        }\n                                        __typename\n                                    }\n                                    __typename\n                                }\n                                __typename\n                            }\n                            __typename\n                        }\n                        __typename\n                    }\n                aptBusinessObjectPrimaryPartnerLocationMasterData {\n                    to {\n                        ... on PartnerLocationMasterData {\n                            id\n                            data {\n                                businessMasterDataCommon {\n                                    businessName\n                                    businessAddress {\n                                        address1\n                                        address2\n                                        city\n                                        district\n                                        village\n                                        houseNumber\n                                        township\n                                        state\n                                        postalCode\n                                        country\n                                        __typename\n                                    }\n                                    __typename\n                                }\n                                __typename\n                            }\n                            __typename\n                        }\n                        __typename\n                    }\n                    __typename\n                }\n                __typename\n            }\n        __typename\n    }\n        __typename\n    }    \n}\nfragment userName on User {\n    id\n    data {\n        givenName\n        surname\n        __typename\n    }\n    __typename\n} ",
+								"variables": "{\n    \"type\":\"ExternalManufacturingIncident\",\n    \"id\":\"{{external_manufacturing_incident_id}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddXMfgIncidentComment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var mResult = JSON.parse(jsonData.data.genericActionCall.result);",
+									"pm.environment.set(\"external_manufacturing_incident_comment_id\", mResult.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation AddXMFGIncidentComments($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Addcommentforincident\",\n\"payload\":{\n    \"processId\":\"{{external_manufacturing_incident_id}}\",\n    \"processType\":\"externalManufacturingIncident\",\n        \"aptCommentBox\":{\n      \"aptComment\":{\n        \"commentText\": \"Adding a test comment using Postman and GraphQL\",\n        \"visibilityType\": \"Public\"\n      }\n    }\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListXMfgIncidentComments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query ListXMFGIncidentComments($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Listcommentsforincident\",\n\"payload\":{\n    \"id\":\"{{external_manufacturing_incident_id}}\",\n    \"processType\":\"externalManufacturingIncident\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetActivityHistoryForXMfgIncident",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetActivityHistoryForXMFGIncident($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Getactivityhistoryforincident\",\n\"payload\":{\n    \"processId\":\"{{external_manufacturing_incident_id}}\",\n    \"processType\":\"externalManufacturingIncident\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Compliance Exception Incident",
+			"item": [
+				{
+					"name": "AddCEIncident",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var mResult = JSON.parse(jsonData.data.genericActionCall.result)",
+									"// pm.environment.set(\"payload_data\", jsonData.data);",
+									"pm.environment.set(\"compliance_exception_incident_id\", mResult.id);",
+									"pm.environment.set(\"apt_compliance_exeption_id\", mResult.aptBusinessObjectId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation AddComplianceException($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Addcomplianceexception\",\n\"payload\":{\n    \"aptBusinessObjectSummary\": \"GraphQL test run\",\n    \"aptBusinessObjectDescription\":\"Adding a compliance exception incident programmatically from postman using graphQL walkthrough demo.\",\n    \"businessPriority\":\"MEDIUM\",\n    \"resolutionDueDate\":\"1736613281000\" // 11 Jan 2025\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditCEIncident",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation EditComplianceException($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Editcomplianceexception\",\n\"payload\":{\n    \"id\":\"{{compliance_exception_incident_id}}\",\n    \"aptBusinessObjectDescription\":\"Editing an compliance exception programmatically using graphQL via Postman\",\n    \"businessPriority\":\"LOW\",\n    \"responsiblePartyAtParner\":{}\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ReadCEIncident",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query readCEIncident($type: String!, $id: String!)\n{\n    genericGetObject(type:$type, id: $id)\n    {\n        ... on ALL_RETURNS {\n            ... on ComplianceException {\n                id\n                currentBaseState\n                currentSubState\n                data {\n                    aptBusinessObjectId\n                    aptBusinessObjectSummary\n                    aptBusinessObjectDescription\n                    responsibleDepartmentAtCompany\n                    responsibleDepartmentAtPartner\n                    resolutionDueDate\n                    businessPriority\n                    referenceIdentifiers {\n                        value\n                        referenceTransactionType\n                        __typename\n                    }\n                    dateSubmitted\n                    createdByPartner\n                    __typename\n                }\n                aptBusinessObjectBelongsToProcessNetwork {\n                    to {\n                        ... on ProcessNetwork {\n                            id\n                            __typename\n                        }\n                        __typename\n                    }\n                    __typename\n                }\n                aptBusinessObjectAssignedToCompanyPartnerMasterData {\n                    to {\n                        ... on PartnerLocationMasterData {\n                            id\n                            data {\n                                businessMasterDataCommon {\n                                    businessName\n                                    businessAddress {\n                                        address1\n                                        address2\n                                        city\n                                        district\n                                        village\n                                        houseNumber\n                                        township\n                                        state\n                                        postalCode\n                                        country\n                                        __typename\n                                    }\n                                    __typename\n                                }\n                                __typename\n                            }\n                            __typename\n                        }\n                        ... on PartnerMasterData {\n                            id\n                            data {\n                                businessMasterDataCommon {\n                                    businessName\n                                    businessAddress {\n                                        address1\n                                        address2\n                                        city\n                                        district\n                                        village\n                                        houseNumber\n                                        township\n                                        state\n                                        postalCode\n                                        country\n                                        __typename\n                                    }\n                                    __typename\n                                }\n                                __typename\n                            }\n                            __typename\n                        }\n                        ... on CompanyLocationMasterData {\n                            id\n                            data {\n                                businessMasterDataCommon {\n                                    businessName\n                                    businessAddress {\n                                        address1\n                                        address2\n                                        city\n                                        district\n                                        village\n                                        houseNumber\n                                        township\n                                        state\n                                        postalCode\n                                        country\n                                        __typename\n                                    }\n                                    __typename\n                                }\n                                __typename\n                            }\n                            __typename\n                            }\n                            ... on CompanyMasterData{\n                                id\n                                data {\n                                    businessMasterDataCommon {\n                                        businessName\n                                        businessAddress {\n                                            address1\n                                            address2\n                                            city\n                                            district\n                                            village\n                                            houseNumber\n                                            township\n                                            state\n                                            postalCode\n                                            country\n                                            __typename\n                                        }\n                                        __typename\n                                    }\n                                    __typename\n                                }\n                                __typename\n                            }\n                            __typename\n                        }\n                        __typename\n                }\n\n                __typename\n            }\n        __typename\n    }\n        __typename\n    }    \n}\n",
+								"variables": "{\n    \"type\":\"ComplianceException\",\n    \"id\":\"{{compliance_exception_incident_id}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddCEIncidentComment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var mResult = JSON.parse(jsonData.data.genericActionCall.result);",
+									"pm.environment.set(\"compliance_exception_incident_comment_id\", mResult.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation AddCEIncidentComments($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Addcommentforincident\",\n\"payload\":{\n    \"processId\":\"{{compliance_exception_incident_id}}\",\n    \"processType\":\"complianceException\",\n        \"aptCommentBox\":{\n      \"aptComment\":{\n        \"commentText\": \"Adding a test comment using Postman and GraphQL.\",\n        \"visibilityType\": \"Public\"\n      }\n    }\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListCEIncidentComments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query ListCEIncidentComments($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Listcommentsforincident\",\n\"payload\":{\n    \"id\":\"{{compliance_exception_incident_id}}\",\n    \"processType\":\"complianceException\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetActivityHistoryForCEIncident",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetActivityHistoryForCEIncident($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Getactivityhistoryforincident\",\n\"payload\":{\n    \"processId\":\"{{compliance_exception_incident_id}}\",\n    \"processType\":\"complianceException\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Change",
+			"item": [
+				{
+					"name": "AddChange",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var mResult = JSON.parse(jsonData.data.genericActionCall.result);",
+									"pm.environment.set(\"change_id\", mResult.id);",
+									"pm.environment.set(\"apt_change_id\", mResult.aptBusinessObjectId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation AddChange($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Addchange\",\n\"payload\":{\n    \"aptBusinessObjectSummary\": \"GraphQL using postman demo\",\n    \"aptBusinessObjectDescription\":\"Test case entering a change request using postman and graphQL\",\n    \"isVisible\": false,\n    \"businessPriority\": \"MEDIUM\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditChange",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation Editchange($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Editchange\",\n\"payload\":{\n    \"id\":\"{{change_id}}\",\n    \"aptBusinessObjectSummary\":\"GraphQL test run\",\n    \"aptBusinessObjectDescription\":\"Using graphql in postman to edit.\",\n    \"businessPriority\":\"LOW\",\n    \"responsiblePartyAtParner\":{}\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CloseChange",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation Editchange($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Editchange\",\n\"payload\":{\n    \"id\":\"{{change_id}}\",\n    \"aptBusinessObjectSummary\":\"GraphQL test run\",\n    \"aptBusinessObjectDescription\":\"Using graphql in postman to edit.\",\n    \"businessPriority\":\"LOW\",\n    \"responsiblePartyAtParner\":{}\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddChangeComment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var mResult = JSON.parse(jsonData.data.genericActionCall.result);",
+									"pm.environment.set(\"change_comment_id\", mResult.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation AddChangeComments($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Addcommentforchange\",\n\"payload\":{\n    \"processId\":\"{{change_id}}\",\n    \"processType\":\"change\",\n            \"aptCommentBox\":{\n      \"aptComment\":{\n        \"commentText\": \"Adding a test comment using Postman and GraphQL.\",\n        \"visibilityType\": \"Public\"\n      }\n    }\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListChangeComments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query ListChangeComments($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n        result\n    }                 \n}",
+								"variables": "{\n\"action\": \"Listcommentsforchange\",\n\"payload\":{\n    \"id\":\"{{change_id}}\",\n    \"processType\":\"change\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetActivityHistoryForChange",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetActivityHistoryForIncident($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Getactivityhistoryforincident\",\n\"payload\":{\n    \"processId\":\"{{change_id}}\",\n    \"processType\":\"change\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Change",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query readChange($type: String!, $id: String!)\n{\n    genericGetObject(type:$type, id: $id)\n    {\n        ... on ALL_RETURNS{\n            ... on Change {\n                id\n                currentBaseState\n                currentSubState\n                data {\n                    aptBusinessObjectId\n                    aptBusinessObjectSummary\n                    aptBusinessObjectDescription\n                    responsibleDepartmentAtCompany\n                    responsibleDepartmentAtPartner\n                    businessPriority\n                    changeType\n                    implementationDueDate\n                    implementationTeam\n                    subjectMatterExperts{\n                        subjectMatterExpertName\n                        subjectMatterExpertEmail\n                    }\n                    changeImpact{\n                        changeReferenceIdentifiers{\n                            referenceTransactionType\n                            value\n                        }\n                        riskType\n                        implementationNeededByDate\n                        businessScopeImpact\n                        otherBusinessScopeImpact\n                        reasonForChange\n                        reasonForChangeNotes\n                        potentialRisks\n                        evaluationsOfChange\n                    }\n                    createdByPartner\n                    productId\n                    aptBusinessObjectImpactsLocationMasterData{\n                        locationType\n                        locationContact\n                        partnerLocationId\n                    }\n                    __typename\n                }\n                aptBusinessObjectContainsComment{\n                    to {\n                        ... on AptComment{\n                            id\n                            data{\n                                commentText\n                                visibilityType\n                            }\n                        }\n                    }\n                }\n                aptBusinessObjectContainsAttachment{\n                    to {\n                        ... on AptAttachment{\n                            data{\n                                fileName\n                                fileSize\n                                visibilityType\n                                fileS3Location\n                            }\n                        }\n                    }\n                }\n                __typename\n            }\n            __typename\n        }\n        __typename\n    }    \n}\n",
+								"variables": "{\n    \"type\": \"Change\",\n    \"id\":\"{{change_id}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Document Review Process",
+			"item": [
+				{
+					"name": "Add Document Review",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var mResult = JSON.parse(jsonData.data.genericActionCall.result);",
+									"pm.environment.set(\"document_review_id\", mResult.id);",
+									"pm.environment.set(\"apt_document_review_id\", mResult.aptBusinessObjectId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation AddDocumentReview($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Adddocumentreview\",\n\"payload\":{\n    \"aptBusinessObjectSummary\":\"New Document Review using graphQL and postman\",\n    \"aptBusinessObjectDescription\":\"Adding a document review using postman and graphQL\",\n    \"businessPriority\":\"MEDIUM\",\n    \"approvalDueDate\": \"1736613281000\" // 11 Jan 2025\n}\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Document Review",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation EditDocumentReview($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Editdocumentreview\",\n\"payload\":{\n    \"id\":\"{{document_review_id}}\",\n    \"aptBusinessObjectSummary\":\"GraphQL test run\",\n    \"aptBusinessObjectDescription\":\"Using graphql in postman to edit document review incident\",\n    \"businessPriority\":\"LOW\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Document Review Comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var mResult = JSON.parse(jsonData.data.genericActionCall.result);",
+									"pm.environment.set(\"document_review_comment_id\", mResult.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation AddChangeComments($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Addcommentfordocumentreview\",\n\"payload\":{\n    \"processId\":\"{{document_review_id}}\",\n    \"processType\":\"documentReview\",\n            \"aptCommentBox\":{\n      \"aptComment\":{\n        \"commentText\": \"Adding a test comment to Document Review using Postman and GraphQL.\",\n        \"visibilityType\": \"Public\"\n      }\n    }\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Document Review Comments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query ListDocumentReviewComments($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Listcommentsfordocumentreview\",\n\"payload\":{\n    \"id\":\"{{document_review_id}}\",\n    \"processType\":\"documentReview\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Activity History for Document Review",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetActivityHistoryForDocumentReview($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Getactivityhistoryforincident\",\n\"payload\":{\n    \"processId\":\"{{document_review_id}}\",\n    \"processType\":\"documentReview\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Document Review",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query readDocumentReview($id: String!, $type: String!)\n{\n    genericGetObject(type: $type, id: $id)\n    {\n        ... on ALL_RETURNS{\n            ... on DocumentReview {\n                id\n                currentBaseState\n                currentSubState\n                data {\n                    aptBusinessObjectId\n                    aptBusinessObjectSummary\n                    aptBusinessObjectDescription\n                    responsibleDepartmentAtCompany\n                    responsibleDepartmentAtPartner\n                    businessPriority\n                    createdByPartner\n                    productId\n                    aptBusinessObjectImpactsLocationMasterData{\n                        locationType\n                        locationContact\n                        partnerLocationId\n                    }\n                    __typename\n                }\n                aptBusinessObjectContainsComment{\n                    to {\n                        ... on AptComment{\n                            id\n                            data{\n                                commentText\n                                visibilityType\n                            }\n                        }\n                    }\n                }\n                aptBusinessObjectContainsAttachment{\n                    to {\n                        ... on AptAttachment{\n                            data{\n                                fileName\n                                fileSize\n                                visibilityType\n                                fileS3Location\n                            }\n                        }\n                    }\n                }\n                __typename\n            }\n            __typename\n        }\n    }    \n}",
+								"variables": "{\n    \"type\":\"DocumentReview\",\n    \"id\":\"{{document_review_id}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task",
+			"item": [
+				{
+					"name": "Add Task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var mResult = JSON.parse(jsonData.data.genericActionCall.result);",
+									"pm.environment.set(\"task_id\", mResult.id);",
+									"pm.environment.set(\"apt_task_id\", mResult.aptBusinessObjectId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation AddTask($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Addtask\",\n\"payload\":{\n    \"templateId\": \"{{task_template_id}}\",\n        \"aptBusinessObjectSummary\": \"GraphQL test run\",\n        \"aptBusinessObjectDescription\": \"Tasks for recurring purchase orders\",\n        \"businessPriority\": \"LOW\",\n        \"completionDueDate\": \"1737834411000\", \n        \"isVisible\": true,\n        \"isAtRisk\": false\n        \n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation EditTask($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Edittask\",\n\"payload\":{\n    \"id\":\"{{task_id}}\",\n    \"aptBusinessObjectDescription\":\"Modifying the description using Postman and GraphQL\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Task Details",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query ReadTaskDetails($id: String!, $type: String!)\n{\n    genericGetObject(type:$type, id: $id)\n    {\n        ... on ALL_RETURNS{\n            ... on Task{\n                id\n                data{\n                    templateName\n                    aptBusinessObjectDescription\n                    isAddRemoveSubtaskAllowed\n                    businessPriority\n                    responsibleDepartmentAtCompany\n                }\n                taskContainsSubTask{\n                    to{\n                        subType\n                        objectType\n                    }\n                }\n                __typename\n            }\n            __typename\n        }\n        __typename\n    }    \n}",
+								"variables": "{\n    \"type\":\"Task\",\n    \"id\":\"{{task_id}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Copy Task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var mResult = JSON.parse(jsonData.data.genericActionCall.result);",
+									"pm.environment.set(\"copied_task_id\", mResult.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation Copytask($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Copytask\",\n\"payload\":{\n    \"id\":\"{{task_id}}\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Close Task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation CloseTask($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Closetask\",\n\"payload\":{\n    \"id\":\"{{task_id}}\",\n    \"taskResolutionType\":\"CANCELLED\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Close Subtask",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation CloseSubTask($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Closesubtask\",\n\"payload\":{\n    \"id\":\"{{subtask_id}}\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reopen Subtask",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var mResult = JSON.parse(jsonData.data.genericActionCall.result);",
+									"pm.environment.set(\"incidentId\", mResult.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation ReopenSubTask($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Reopensubtask\",\n\"payload\":{\n    \"id\":\"{{subtask_id}}\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Activity History for Task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetActivityHistoryForTask($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Getactivityhistoryforincident\",\n\"payload\":{\n    \"processId\":\"{{task_id}}\",\n    \"processType\":\"task\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Subtask",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation RemoveSubTaskFromTask($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Removesubtaskfromtask\",\n\"payload\":{\n    \"id\":\"{{subtask_id}}\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Comment For Task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var mResult = JSON.parse(jsonData.data.genericActionCall.result);",
+									"pm.environment.set(\"task_comment_id\", mResult.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation AddCommentForTask($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Addcommentforprocess\",\n\"payload\":{\n    \"processId\":\"{{task_id}}\",\n    \"processType\": \"task\",\n            \"aptCommentBox\":{\n            \"aptComment\":{\n                \"commentText\": \"Adding a comment using GraphQL via Postman\",\n                \"visibilityType\": \"Public\"\n            }\n        }\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Comment For Task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation EditCommentForTask($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Editcommentforprocess\",\n\"payload\":{\n    \"id\":\"{{task_comment_id}}\",\n    \"processType\": \"task\",\n            \"aptCommentBox\":{\n            \"aptComment\":{\n                \"commentText\": \"Modifying the comment programmatically using GraphQL via Postman\",\n                \"visibilityType\": \"Public\"\n            }\n        }\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Comments For Task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation ListCommentForTask($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Listcommentsforprocess\",\n\"payload\":{\n    \"processId\":\"{{task_id}}\",\n    \"processType\": \"task\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reopen Task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation CloseTask($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Closetask\",\n\"payload\":{\n    \"id\":\"{{task_id}}\",\n    \"resolutionType\":\"CANCELLED\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add SubTask to Task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var mResult = JSON.parse(jsonData.data.genericActionCall.result);",
+									"pm.environment.set(\"subtask_id\", mResult.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation AddSubTaskToTask($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Addsubtasktotask\",\n\"payload\":{\n    \"taskId\":\"{{task_id}}\",\n    \"subTaskName\": \"Postman created using GraphQL\",\n    \"subTaskType\": \"Postman test\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List SubTask for Task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query ListSubTaskForTask($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Listsubtaskfortask\",\n\"payload\":{\n    \"taskId\":\"{{task_id}}\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Subtask on Task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation EditSubTaskOnTask($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Editsubtaskontask\",\n\"payload\":{\n    \"id\":\"{{subtask_id}}\",\n    \"subTaskType\": \"Postman test modification\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task Template",
+			"item": [
+				{
+					"name": "Add Task Template",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var mResult = JSON.parse(jsonData.data.genericActionCall.result);",
+									"pm.environment.set(\"task_template_id\", mResult.id);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation AddTaskTemplate($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Addtasktemplate\",\n\"payload\":{\n    \"templateName\": \"GQL Postman Created Task Template\",\n    \"aptBusinessObjectDescription\": \"Template to demonstrate subTask creation via GraphQL API and Postman\",\n    \"isTemplateModifiableByMember\": true,\n    \"isAddRemoveSubtaskAllowed\": true,\n    \"completionRequiredWithinDays\": 14,\n    \"businessPriority\": \"LOW\"\n}\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add SubTask to Template",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var mResult = JSON.parse(jsonData.data.genericActionCall.result);",
+									"pm.environment.set(\"subtask_template_id\", mResult.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation AddSubTaskToTemplate($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Addsubtasktotemplate\",\n\"payload\":{\n    \"templateId\":\"{{task_template_id}}\",\n    \"subTaskName\": \"GQL Created Sub Task 2\",\n    \"subTaskType\": \"Test subTask\",\n    \"businessPriority\": \"LOW\"\n}\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Task Template",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation EditTaskTemplate($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Edittasktemplate\",\n\"payload\":{\n    \"id\":\"{{task_template_id}}\",\n    \"aptBusinessObjectDescription\":\"Modified template via Postman using GraphQL\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Sub Task on Template",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation EditSubTaskOnTemplate($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Editsubtaskontemplate\",\n\"payload\":{\n    \"id\":\"{{subtask_template_id}}\",\n    \"subTaskName\":\"Modified template name 1\",\n    \"businessPriority\":\"LOW\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List SubTask for Template",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var mResult = JSON.parse(jsonData.data.genericActionCall.result);",
+									"pm.environment.set(\"incidentId\", mResult.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query ListSubTaskForTemplate($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Listsubtaskfortemplate\",\n\"payload\":{\n    \"templateId\":\"{{task_template_id}}\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove SubTask from Template",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation RemoveSubTaskFromTemplate($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Removesubtaskfromtemplate\",\n\"payload\":{\n    \"id\":\"{{subtask_template_id}}\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Copy Task Template",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var mResult = JSON.parse(jsonData.data.genericActionCall.result);",
+									"pm.environment.set(\"copied_task_template_id\", mResult.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation CopyTaskTemplate($action: String!, $payload: JSON!)\n{\n    genericActionCall(action: $action, payload: $payload)\n    {\n    result\n    __typename\n    }    \n}",
+								"variables": "{\n\"action\": \"Copytasktemplate\",\n\"payload\":{\n    \"id\":\"{{task_template_id}}\",\n    \"templateName\":\"New template number 2\",\n    \"copyGeneralInfo\": true,\n    \"copySubTasks\": false\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Template Details",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query ReadTemplateDetails($id: String!, $type: String!)\n{\n    genericGetObject(type:$type, id: $id)\n    {\n        ... on ALL_RETURNS{\n            ... on TaskTemplate{\n                id\n                data{\n                    templateName\n                    aptBusinessObjectDescription\n                    isTemplateModifiableByMember\n                    isAddRemoveSubtaskAllowed\n                    completionRequiredWithinDays\n                    businessPriority\n                    responsibleDepartmentAtCompany\n                }\n                taskTemplateContainsSubTask{\n                    to{\n                        subType\n                        objectType\n                    }\n                }\n                __typename\n            }\n            __typename\n        }\n        __typename\n    }    \n}",
+								"variables": "{\n    \"type\":\"TaskTemplate\",\n    \"id\":\"{{task_template_id}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Master Data",
+			"item": [
+				{
+					"name": "Get Product Master Data",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query getProductMasterData($action: String!, $regulatoryItemCodeValue: String!, $regulatoryItemCodeType: String!)\n{\n    genericActionCall(\n        action: $action,\n        payload:\n        {\n            regulatoryItemCodeValue: $regulatoryItemCodeValue,\n            regulatoryItemCodeType: $regulatoryItemCodeType\n            }\n    )\n    {\n        result\n        __typename\n    }\n}",
+								"variables": "{\n\"action\": \"Getproductbyitemcode\", \n\"regulatoryItemCodeValue\":\"{{regulatory_item_code_value}}\",\n\"regulatoryItemCodeType\": \"{{regulatory_item_code_type}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Company Master Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var mResult = JSON.parse(jsonData.data.genericActionCall.result);",
+									"pm.environment.set(\"response_body\", mResult);",
+									"",
+									"pm.test(\"Request is successful\",function(){",
+									"    //pm.response.to.be.ok;",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is an Object\", function(){",
+									"    if(pm.expect(mResult).not.eq(undefined)){",
+									"        console.log(\"no problem\");",
+									"    }",
+									"    else{",
+									"    pm.variables(mResult).eq(undefined);",
+									"    console.log(\"problem\");",
+									"    }",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query getQueryResults($regulatoryCompanyIdentifierValue: String!, $regulatoryCompanyIdentifierType: String!)\n    {\n        genericActionCall(\n            action: \"Getcompanybyidentifier\",\n            payload:{\n                regulatoryCompanyIdentifierValue: $regulatoryCompanyIdentifierValue,\n                regulatoryCompanyIdentifierType: $regulatoryCompanyIdentifierType\n                }\n        )\n{result}\n}",
+								"variables": "{\n    \"regulatoryCompanyIdentifierValue\": \"{{regulatory_company_identifier}}\",\n    \"regulatoryCompanyIdentifierType\": \"{{regulatory_company_type}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Partner Master Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var mResult = JSON.parse(jsonData.data.genericActionCall.result);",
+									"pm.environment.set(\"response_body\", mResult);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{basicKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Dataspace",
+								"value": "default",
+								"type": "text"
+							},
+							{
+								"key": "companyId",
+								"value": "{{ownerId}}",
+								"type": "text"
+							},
+							{
+								"key": "processNetworkId",
+								"value": "{{processNetworkId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query getQueryResults($regulatoryIdentifierValue: String!, $regulatoryIdentifierType: String!)\n    {\n        genericActionCall(\n            action: \"Getpartnerbyidentifier\",\n            payload:{\n                regulatoryIdentifierValue: $regulatoryIdentifierValue,\n                regulatoryIdentifierType: $regulatoryIdentifierType\n                }\n        )\n{result}\n}",
+								"variables": "{\n    \"regulatoryIdentifierValue\": \"{{partner_regulatory_identifier}}\",\n    \"regulatoryIdentifierType\": \"{{partner_regulatory_identifier_type}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{validation}}/api/graphql",
+							"host": [
+								"{{validation}}"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

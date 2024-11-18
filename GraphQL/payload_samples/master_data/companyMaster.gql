@@ -1,0 +1,19 @@
+query getQueryResults(
+  $regulatoryCompanyIdentifierValue: String!
+  $regulatoryCompanyIdentifierType: String!
+) {
+  genericActionCall(
+    action: "Getcompanybyidentifier"
+    payload: {
+      regulatoryCompanyIdentifierValue: $regulatoryCompanyIdentifierValue
+      regulatoryCompanyIdentifierType: $regulatoryCompanyIdentifierType
+    }
+  ) {
+    result
+  }
+}
+
+{
+    "regulatoryCompanyIdentifierValue": "{{regulatory_company_identifier}}",
+    "regulatoryCompanyIdentifierType": "{{regulatory_company_type}}"
+}

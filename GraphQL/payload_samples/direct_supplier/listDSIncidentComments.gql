@@ -1,0 +1,16 @@
+query ListDSIncidentComments($action: String!, $payload: JSON!)
+{
+    genericActionCall(action: $action, payload: $payload)
+    {
+    result
+    __typename
+    }    
+}
+
+{
+"action": "Listcommentsforincident",
+"payload":{
+    "id":"{{direct_supplier_incident_id}}",
+    "processType":"directSupplierIncident"
+    }
+}

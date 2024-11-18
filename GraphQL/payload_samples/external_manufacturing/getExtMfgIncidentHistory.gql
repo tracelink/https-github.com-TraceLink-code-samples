@@ -1,0 +1,15 @@
+{
+"action": "Listcommentsforincident",
+"payload":{
+    "id":"{{external_manufacturing_incident_id}}",
+    "processType":"externalManufacturingIncident"
+    }
+}
+
+{
+"action": "Getactivityhistoryforincident",
+"payload":{
+    "processId":"{{external_manufacturing_incident_id}}",
+    "processType":"externalManufacturingIncident"
+    }
+}

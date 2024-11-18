@@ -1,0 +1,16 @@
+query GetActivityHistoryForCEIncident($action: String!, $payload: JSON!)
+{
+    genericActionCall(action: $action, payload: $payload)
+    {
+    result
+    __typename
+    }    
+}
+
+{
+"action": "Getactivityhistoryforincident",
+"payload":{
+    "processId":"{{compliance_exception_incident_id}}",
+    "processType":"complianceException"
+    }
+}

@@ -1,0 +1,20 @@
+mutation AddDSIncident($action: String!, $payload: JSON!)
+{
+    genericActionCall(action: $action, payload: $payload)
+    {
+    result
+    __typename
+    }    
+}
+
+{
+"action": "Adddirectsupplierincident",
+"payload":{
+    "aptBusinessObjectSummary": "GraphQL Postman DS Incident test run",
+    "aptBusinessObjectDescription":"Adding an incident programmatically using graphQL via Postman",
+    "directSupplierImpact":{
+    "businessPriority":"MEDIUM"
+    },
+    "resolutionDueDate":1736613281000 // 11 Jan 2025
+    }
+}

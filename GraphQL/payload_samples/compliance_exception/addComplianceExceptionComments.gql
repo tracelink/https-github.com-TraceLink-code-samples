@@ -1,0 +1,22 @@
+mutation AddCEIncidentComments($action: String!, $payload: JSON!)
+{
+    genericActionCall(action: $action, payload: $payload)
+    {
+    result
+    __typename
+    }    
+}
+
+{
+"action": "Addcommentforincident",
+"payload":{
+    "processId":"{{compliance_exception_incident_id}}",
+    "processType":"complianceException",
+        "aptCommentBox":{
+      "aptComment":{
+        "commentText": "Adding a test comment using Postman and GraphQL.",
+        "visibilityType": "Public"
+      }
+    }
+    }
+}

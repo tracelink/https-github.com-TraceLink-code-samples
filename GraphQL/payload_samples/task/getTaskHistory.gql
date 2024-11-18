@@ -1,0 +1,14 @@
+query GetActivityHistoryForTask($action: String!, $payload: JSON!) {
+  genericActionCall(action: $action, payload: $payload) {
+    result
+    __typename
+  }
+}
+
+{
+"action": "Getactivityhistoryforincident",
+"payload":{
+    "processId":"{{task_id}}",
+    "processType":"task"
+    }
+}

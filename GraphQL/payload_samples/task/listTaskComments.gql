@@ -1,0 +1,14 @@
+mutation ListCommentForTask($action: String!, $payload: JSON!) {
+  genericActionCall(action: $action, payload: $payload) {
+    result
+    __typename
+  }
+}
+
+{
+"action": "Listcommentsforprocess",
+"payload":{
+    "processId":"{{task_id}}",
+    "processType": "task"
+    }
+}
